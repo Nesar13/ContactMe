@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.contactme.R;
 import com.example.contactme.util.Util;
 
 //should extend SQLiteOpenHelper
@@ -31,10 +32,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 +Util.KEY_ID + " INTEGER PRIMARY KEY,"+ Util.KEY_NAME + " TEXT,"
                 + Util.KEY_PHONE_NUMBER+" TEXT" +")";
 
+        //Creating table
+        db.execSQL(CREATE_CONTACT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        //DROP TABLE IF EXISTS
+        String DROP_TABLE= String.valueOf(R.string.db_drop);
+        db.execSQL(DROP_TABLE, new String[]{Util.DATABASE_NAME});
+
+        onCreate(db);
+
 
     }
 }
