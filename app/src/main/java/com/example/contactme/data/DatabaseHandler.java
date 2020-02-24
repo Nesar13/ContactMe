@@ -8,14 +8,28 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.contactme.util.Util;
+
+//should extend SQLiteOpenHelper
+
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    public DatabaseHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public DatabaseHandler(@Nullable Context context) {
+        super(context, Util.DATABASE_NAME, null, Util.DATABASE_VERSION);
     }
 
+    //Creating our database
+
+    /**
+     * create table table_name(id Integer primary key, name Text, phone_number Text}
+     *
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String CREATE_CONTACT_TABLE="CREATE TABLE "+ Util.TABLE_NAME + "("
+                +Util.KEY_ID + " INTEGER PRIMARY KEY,"+ Util.KEY_NAME + " TEXT,"
+                + Util.KEY_PHONE_NUMBER+" TEXT" +")";
 
     }
 
