@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.contactme.R;
+import com.example.contactme.model.Contact;
 import com.example.contactme.util.Util;
 
 //should extend SQLiteOpenHelper
@@ -43,8 +44,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String DROP_TABLE= String.valueOf(R.string.db_drop);
         db.execSQL(DROP_TABLE, new String[]{Util.DATABASE_NAME});
 
+        //Create database again
         onCreate(db);
 
 
+    }
+
+    public void createContact(Contact contact){
+        
     }
 }
