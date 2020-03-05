@@ -29,9 +29,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACT_TABLE="CREATE TABLE "+ Util.TABLE_NAME + "("
-                +Util.KEY_ID + " INTEGER PRIMARY KEY,"+ Util.KEY_NAME + " TEXT,"
-                + Util.KEY_PHONE_NUMBER+" TEXT" +")";
+        String CREATE_CONTACT_TABLE = "CREATE TABLE " + Util.TABLE_NAME + "("
+                + Util.KEY_ID + " INTEGER PRIMARY KEY," + Util.KEY_NAME + " TEXT,"
+                + Util.KEY_PHONE_NUMBER + " TEXT" + ")";
 
         //Creating table
         db.execSQL(CREATE_CONTACT_TABLE);
@@ -41,7 +41,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         //DROP TABLE IF EXISTS
-        String DROP_TABLE= String.valueOf(R.string.db_drop);
+        String DROP_TABLE = String.valueOf(R.string.db_drop);
         db.execSQL(DROP_TABLE, new String[]{Util.DATABASE_NAME});
 
         //Create database again
@@ -50,7 +50,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void createContact(Contact contact){
-        
+    public void createContact(Contact contact) {
+        SQLiteDatabase db = getReadableDatabase();
+
+
     }
 }
