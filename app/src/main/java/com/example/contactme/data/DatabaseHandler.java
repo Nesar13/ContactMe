@@ -51,14 +51,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
     /*
-
+        CRUD= Create, Read, Update, and Delete
      */
     public void addContact(Contact contact) {
         SQLiteDatabase db = getReadableDatabase();
 
+
+        //ContentValues is recommended to use when you use a database, similar to hashmap but has other features
         ContentValues values = new ContentValues();
         values.put(Util.KEY_NAME, contact.getName());
         values.put(Util.KEY_PHONE_NUMBER, contact.getPhoneNumber());
+
+        db.insert(Util.TABLE_NAME, null, values );
+
+        db.close();
+
+
+
 
     }
 }
