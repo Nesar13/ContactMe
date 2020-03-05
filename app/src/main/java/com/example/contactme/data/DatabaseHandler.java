@@ -51,7 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
     /*
-    
+
      */
     public void addContact(Contact contact) {
         SQLiteDatabase db = getReadableDatabase();
