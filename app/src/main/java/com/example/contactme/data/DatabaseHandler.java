@@ -2,6 +2,7 @@ package com.example.contactme.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -50,8 +51,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     }
-    /*
-        CRUD= Create, Read, Update, and Delete
+
+
+    /**
+     * CRUD= Create, Read, Update, and Delete
+     *
+     * @param contact passed so we can access the Contact Java class to put values
      */
     public void addContact(Contact contact) {
         SQLiteDatabase db = getReadableDatabase();
@@ -62,12 +67,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(Util.KEY_NAME, contact.getName());
         values.put(Util.KEY_PHONE_NUMBER, contact.getPhoneNumber());
 
-        db.insert(Util.TABLE_NAME, null, values );
+        db.insert(Util.TABLE_NAME, null, values);
 
-        db.close();
-
-
+                db.close();
 
 
+    }
+
+    public Contact getContact(int id) {
+        SQLiteDatabase db=this.getReadableDatabase();
+
+        //Cursor allows users to get query through our table
+        //
+        Cursor cursor=db.query(Util.TABLE_NAME, new String[]{ Util.KEY_ID, Util.KEY_NAME, Util.KEY_PHONE_NUMBER},
+                Util.KEY_ID + "=?", new String[] {String.valueOf(id)}, null, null, null );
+
+        if (null != cursor) {
+            cursor.moveToFirst();
+        }
+
+
+        return null;
     }
 }
