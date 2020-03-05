@@ -1,5 +1,6 @@
 package com.example.contactme.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -49,10 +50,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     }
-
-    public void createContact(Contact contact) {
+    /*
+    
+     */
+    public void addContact(Contact contact) {
         SQLiteDatabase db = getReadableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(Util.KEY_NAME, contact.getName());
+        values.put(Util.KEY_PHONE_NUMBER, contact.getPhoneNumber());
 
     }
 }
